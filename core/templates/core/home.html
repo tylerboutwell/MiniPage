@@ -3,10 +3,12 @@
 {%block content%}
 
 {% if user.is_authenticated %}
-<h1> {{user}}</h1>
+<h1> {{user}}'s page!</h1>
+
 
 {%else%}
 <h1>Login or Register</h1>
+
 
 {%endif%}
 
