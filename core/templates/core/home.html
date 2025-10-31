@@ -8,7 +8,22 @@
 
 {%else%}
 <h1>Login or Register</h1>
+<form method="post" action="{%url 'core:home' %}">
 
+    {% csrf_token %}
+    <div class="form-group">
+    <label style="color: black;" for="exampleInputEmail1">Username</label>
+    <input type="text" class="form-control" name = "username" placeholder="Enter username" required>
+    </div>
+    <br/>
+    <div class="form-group">
+    <label style="color: black;" for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name = "password" placeholder="Enter password" required>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary w-100 p-3">Log in</button>
+
+</form>
 
 {%endif%}
 
