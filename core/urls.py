@@ -8,4 +8,5 @@ app_name = "core"
 urlpatterns = [
     path("", views.home, name="home"),
     path('login/', auth_views.LoginView.as_view(), name="login"),
+    path('register/', user_views.register, name="register"),
 ]
