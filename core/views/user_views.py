@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from ..forms import SignUpForm
+from profiles.models import Profile
 
 def home(request):
     if request.method == 'POST':
@@ -26,6 +27,8 @@ def register(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
+            # Create a profile instance when a user is registered
+            Profile.objects.create(user=user, business_name = username)
             login(request, user)
             messages.success(request, "You Have Successfully Registered! Welcome!")
             return redirect('core:home')
