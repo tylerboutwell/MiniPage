@@ -28,7 +28,7 @@ def register(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             # Create a profile instance when a user is registered
-            Profile.objects.create(user=user, business_name = username)
+            Profile.objects.create(user=user, profile_name = username)
             login(request, user)
             messages.success(request, "You Have Successfully Registered! Welcome!")
             return redirect('core:home')
