@@ -13,11 +13,15 @@ def register(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             # Create a profile instance when a user is registered
-            Profile.objects.create(user=user, profile_name = username)
-            login(request, user)
-            messages.success(request, "You Have Successfully Registered! Welcome!")
-            return redirect('core:home')
+            if user is not None:
+                Profile.objects.create(user=user, profile_name = username)
+                login(request, user)
+                messages.success(request, "You Have Successfully Registered! Welcome!")
+                return redirect('core:home')
+            else:
+                messages.error(request, "Authentication failed. Please try logging in.")
+        else:
+            messages.error(request, "There was a problem with your registration.")
     else:
         form = SignUpForm()
-        return render(request, 'registration/register.html', {'form':form})
     return render(request, 'registration/register.html', {'form':form})

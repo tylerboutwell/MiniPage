@@ -5,17 +5,23 @@
 <h1>Register</h1>
 <br/>
 
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
 <form method="POST" action="">
 	{% csrf_token %}
 	{% if form.errors %}
-			<div class="alert alert-warning alert-dismissible fade show" role="alert">
-			  Your Form Has Errors
+			<div role="alert">
+			  Your form has errors.
 			  {% for field in form %}
 			  	{% if field.errors %}
 			  		{{ field.errors }}
 			  	{% endif %}
 			  {% endfor %}
-			  <button type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+			  <button type="button" aria-label="Close">Close</button>
 			</div>
 		{% endif %}
 
