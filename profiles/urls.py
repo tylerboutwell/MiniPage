@@ -4,6 +4,6 @@ from profiles import views
 
 app_name = 'profiles'
 
-urlpatters = [
+urlpatterns = [
     path('create/', views.create_profile, name='create_profile'),
 ]
