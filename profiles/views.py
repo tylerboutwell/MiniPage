@@ -10,7 +10,7 @@ def create_profile(request):
                 create_profile = form.save(commit=False)
                 create_profile.user = request.user
                 create_profile.save()
-                messages.success(request, "Customer successfully added.")
+                messages.success(request, "You have created your profile!")
                 return redirect('core:home')
         return render(request, 'profiles/create_profile.html', {'form': form})
     else:
