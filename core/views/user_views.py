@@ -16,8 +16,8 @@ def register(request):
             if user is not None:
                 Profile.objects.create(user=user, profile_name = username)
                 login(request, user)
-                messages.success(request, "You Have Successfully Registered! Welcome!")
-                return redirect('core:home')
+                messages.success(request, "You Have Successfully Registered! Let's create your profile!")
+                return redirect('profiles:create_profile')
             else:
                 messages.error(request, "Authentication failed. Please try logging in.")
         else:
