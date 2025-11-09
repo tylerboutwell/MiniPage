@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
 from profiles.forms import ProfileForm
 from django.contrib import messages
+from profiles.models import Profile
 
 def create_profile(request):
     if not request.user.is_authenticated:
         messages.warning(request, "You must be logged in to create profile.")
+        return redirect('core:home')
+
+    if Profile.objects.filter(user=request.user).exists():
+        messages.info(request, "You already have a profile.")
         return redirect('core:home')
 
     form = ProfileForm(request.POST or None)
