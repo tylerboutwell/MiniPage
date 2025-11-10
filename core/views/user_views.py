@@ -10,15 +10,16 @@ def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form = form.save(commit=False)
             username = form.cleaned_data['username'].lower()
             #Check if username isn't a reserved URL
             if username in RESERVED_USERNAMES:
                 form.add_error("username", "This username is not allowed.")
                 return render(request, "registration/register.html", {"form": form})
 
+            user = form.save(commit=False)
+            user.username = username
+            user.save()
             password = form.cleaned_data['password1']
-            form.save()
             user = authenticate(username=username, password=password)
             # Create a profile instance when a user is registered
             if user is not None:

@@ -5,6 +5,11 @@
 {% if user.is_authenticated %}
 <h1> {{user}}'s page!</h1>
 
+<form action="{% url 'core:logout' %}" method="post" style="display:inline;">
+  {% csrf_token %}
+  <button type="submit">Logout</button>
+</form>
+
 {%else%}
 <a href="{% url 'core:login' %}">Login</a> or <a href="{% url 'core:register' %}"> Register..</a>
 
