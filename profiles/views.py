@@ -1,5 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from profiles.forms import ProfileForm
+from profiles.forms import ProfileForm, LinkForm
 from django.contrib import messages
 from profiles.models import Profile
 
@@ -41,3 +42,18 @@ def edit_profile(request, profile_id):
         else:
             return render(request, 'profiles/edit_profile.html',
                           {"form": form, 'profile': profile})
+@login_required
+def add_link(request, profile_id):
+    form = LinkForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            link = form.save(commit=False)
+            link.profile = request.user.profile
+            form.save()
+            messages.success(request, "Your link has been added!")
+            return redirect('profiles:profile_detail', profile_id)
+        else:
+            messages.warning(request, "Invalid link.")
+            return redirect('core:home')
+    else:
+        return render(request, 'profiles/add_link.html', {'form': form, 'profile_id': profile_id})

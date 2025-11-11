@@ -3,4 +3,5 @@
 <h1 class="text-2xl font-bold">{{ profile.profile_name }}</h1>
 <p>{{ profile.bio }}</p>
 <p> <a href="{% url 'profiles:edit_profile' profile.id %}">Edit Profile</a> </p>
+<p> <a href="{% url 'profiles:add_link' profile.id%}"> Add link</a> </p>
 {% endblock %}
