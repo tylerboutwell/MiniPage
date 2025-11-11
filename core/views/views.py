@@ -9,4 +9,4 @@ def minipage_view(request, username):
     user = get_object_or_404(User, username=username)
     profile = get_object_or_404(Profile, user=user)
     links = profile.links.all()
-    return render(request, 'core/minipage.html', {'links': links, profile: profile})
+    return render(request, 'core/minipage.html', {'links': links, 'profile': profile})
