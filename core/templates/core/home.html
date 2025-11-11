@@ -5,6 +5,9 @@
 {% if user.is_authenticated %}
 <h1> {{user}}'s page!</h1>
 
+<a href="{% url 'profiles:profile_detail' profile_id %}" >View profile</a>
+<br>
+
 <form action="{% url 'core:logout' %}" method="post" style="display:inline;">
   {% csrf_token %}
   <button type="submit">Logout</button>
