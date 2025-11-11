@@ -4,7 +4,7 @@
 <p>{{ profile.bio }}</p>
 <ul>
     {% for link in links %}
-        <li>{{ link.title }}: {{ link.url }}</li>
+        <li>{{ link.title }}: {{ link.url }}  <a href="{% url 'profiles:edit_link' profile.id link.id %}">Edit</a> </li>
     {% endfor %}
 </ul>
 <p> <a href="{% url 'profiles:edit_profile' profile.id %}">Edit Profile</a> </p>
