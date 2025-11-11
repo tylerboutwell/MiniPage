@@ -82,3 +82,15 @@ def edit_link(request, profile_id, link_id):
     else:
         return render(request, 'profiles/edit_link.html',
                       {'form': form, 'profile': profile, 'link': link})
+
+@login_required
+def delete_link(request, profile_id, link_id):
+    profile = get_object_or_404(Profile, pk=profile_id)
+    link = get_object_or_404(Link, pk=link_id, profile=profile)
+    if link.profile == request.user.profile:
+        link.delete()
+        messages.success(request, "Your link has been deleted.")
+        return redirect('profiles:profile_detail', profile_id=profile_id)
+    else:
+        messages.warning(request, "You are not allowed to delete this link.")
+        return redirect('profiles:profile_detail', profile_id=profile_id)
