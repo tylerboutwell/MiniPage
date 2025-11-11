@@ -29,3 +29,15 @@ def profile_detail(request, profile_id):
     else:
         messages.warning(request, "You are not allowed to see this page.")
         return redirect('core:home')
+
+def edit_profile(request, profile_id):
+    profile = get_object_or_404(Profile, pk=profile_id)
+    if profile.user == request.user:
+        form = ProfileForm(request.POST or None, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your profile has been updated!")
+            return redirect('core:home')
+        else:
+            return render(request, 'profiles/edit_profile.html',
+                          {"form": form, 'profile': profile})
