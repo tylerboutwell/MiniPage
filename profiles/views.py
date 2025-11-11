@@ -23,10 +23,12 @@ def create_profile(request):
             return redirect('core:home')
     return render(request, 'profiles/create_profile.html', {'form': form})
 
+@login_required
 def profile_detail(request, profile_id):
     profile = get_object_or_404(Profile, pk=profile_id)
+    links = profile.links.all()
     if profile.user == request.user:
-        return render(request, 'profiles/profile_detail.html', {'profile': profile})
+        return render(request, 'profiles/profile_detail.html', {'profile': profile, 'links': links})
     else:
         messages.warning(request, "You are not allowed to see this page.")
         return redirect('core:home')
