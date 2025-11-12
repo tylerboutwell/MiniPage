@@ -1,1 +1,19 @@
-<h1>MINIPAGE</h1>
+{% extends 'core/base.html' %}
+{% block content %}
+
+<h1>{{ profile.profile_name }}'s minipage!</h1>
+<h2>{{ profile.bio }}</h2>
+
+<h2>Links!</h2>
+<ul>
+    {% for link in links %}
+    <li>
+    <a href="{{ link.url }}" target="_blank">
+          {{ link.title }}
+        </a>
+    </li>
+    {% empty %}
+      <li>No links yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
