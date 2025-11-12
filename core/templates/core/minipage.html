@@ -1,10 +1,10 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-<h1>{{ profile.profile_name }}'s minipage!</h1>
-<h2>{{ profile.bio }}</h2>
+<h1>{{ profile.profile_name }}</h1>
+<h4>{{ profile.bio }}</h4>
 
-<h2>Links!</h2>
+<h4>Links!</h4>
 <ul>
     {% for link in links %}
     <li>
