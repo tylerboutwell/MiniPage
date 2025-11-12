@@ -1,7 +1,10 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<h1 class="text-2xl font-bold">{{ profile.profile_name }}</h1>
-<p>{{ profile.bio }}</p>
+<h3>Profile name: {{ profile.profile_name }}</h3>
+<p>Profile bio: {{ profile.bio }}</p>
+<p> <a href="{% url 'profiles:edit_profile' profile.id %}">Edit Profile</a> </p>
+<br>
+<h3>Your links</h3>
 <ul>
     {% for link in links %}
         <li>{{ link.title }}: {{ link.url }}
@@ -9,6 +12,5 @@
             <a href="{% url 'profiles:delete_link' profile.id link.id %}">Delete</a> </li>
     {% endfor %}
 </ul>
-<p> <a href="{% url 'profiles:edit_profile' profile.id %}">Edit Profile</a> </p>
 <p> <a href="{% url 'profiles:add_link' profile.id%}"> Add link</a> </p>
 {% endblock %}
