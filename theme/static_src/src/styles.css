@@ -8,3 +8,7 @@
   * the scope of this path.
   */
 @source "../../../**/*.{html,py,js}";
+.link-button {
+    @apply block w-full text-center bg-white shadow-md hover:shadow-lg
+           rounded-xl py-3 px-4 font-semibold text-gray-800 hover:bg-gray-100;
+}

@@ -5,7 +5,7 @@
 {% if user.is_authenticated %}
 <h1> {{user}}'s page!</h1>
 
-<a href="{% url 'profiles:profile_detail' profile_id %}" >View your profile</a>
+<a href="{% url 'profiles:profile_detail' profile_id %}" class="link-button">View your profile</a>
 <a href="{% url 'core:minipage' username %}"> View your minipage</a>
 <br>
 
