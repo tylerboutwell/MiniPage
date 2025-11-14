@@ -3,15 +3,15 @@
 {%block content%}
 
 {% if user.is_authenticated %}
-<h1> {{user}}'s page!</h1>
+<h1 class="text-3xl font-bold text-gray-900 text-center mb-6"> {{user}}'s page!</h1>
 
 <a href="{% url 'profiles:profile_detail' profile_id %}" class="link-button">View your profile</a>
-<a href="{% url 'core:minipage' username %}"> View your minipage</a>
+<a href="{% url 'core:minipage' username %}" class="link-button"> View your minipage</a>
 <br>
 
 <form action="{% url 'core:logout' %}" method="post" style="display:inline;">
   {% csrf_token %}
-  <button type="submit">Logout</button>
+  <button type="submit" class="link-button">Logout</button>
 </form>
 
 {%else%}
