@@ -10,5 +10,13 @@
 @source "../../../**/*.{html,py,js}";
 .link-button {
     @apply block w-full text-center bg-white shadow-md hover:shadow-lg
-           rounded-xl py-3 px-4 font-semibold text-gray-800 hover:bg-gray-100;
+           rounded-xl py-3 px-4 font-semibold text-gray-800 hover:bg-gray-100 m-px;
+}
+
+.link-buttons{
+    @apply text-center bg-white shadow-md hover:shadow-lg
+           rounded-xl py-3 px-4 font-semibold text-gray-800 hover:bg-gray-100 m-px;
+}
+.h1 {
+  @apply text-2xl font-bold md:text-4xl;
 }
