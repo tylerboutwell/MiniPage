@@ -3,6 +3,6 @@
 <form action="{% url 'profiles:create_profile' %}" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit">
+    <input class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-800" type="submit" value="Submit">
 </form>
 {% endblock %}
