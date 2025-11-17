@@ -1,19 +1,74 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<div class="p-3 bg-stone-300 mb-1">
-<h1 class="h1 text-center">Profile name: {{ profile.profile_name }}</h1>
-<p class="text-3xl text-center">Profile bio: {{ profile.bio }}</p>
-<p> <a href="{% url 'profiles:edit_profile' profile.id %}" class="link-buttons">Edit Profile</a> </p>
+<div class="max-w-3xl mx-auto mt-16 px-6">
+
+    <!-- Header -->
+    <div class="flex items-center gap-6 mb-10">
+        <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-3xl font-semibold text-gray-500">
+            {{ profile.profile_name|first|upper }}
+        </div>
+        <div>
+            <h1 class="text-3xl font-bold">{{ profile.profile_name }}</h1>
+            <p class="text-gray-600">@{{ profile.user.username }}</p>
+        </div>
+    </div>
+
+    <!-- Bio -->
+    <div class="bg-white p-6 rounded-2xl shadow mb-8">
+        <h2 class="text-xl font-semibold mb-2">Bio</h2>
+        <p class="text-gray-700">{{ profile.bio|default:"No bio added yet." }}</p>
+
+        <a href="{% url 'profiles:edit_profile' profile.id %}"
+           class="inline-block mt-4 text-blue-600 hover:underline font-medium">
+            Edit profile →
+        </a>
+    </div>
+
+    <!-- Links -->
+    <div class="bg-white p-6 rounded-2xl shadow mb-8">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Links</h2>
+            <a href="{% url 'profiles:add_link' profile.id %}"
+               class="text-blue-600 hover:underline font-medium">
+                Add link +
+            </a>
+        </div>
+
+        {% if links %}
+            <ul class="space-y-3">
+                {% for link in links %}
+                    <li class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                        <a href="{{ link.url }}" target="_blank" class="text-blue-600 hover:underline">
+                            {{ link.title }}
+                        </a>
+
+                        <a href="{% url 'profiles:edit_link' profile.id link.id %}"
+                           class="text-sm text-gray-500 hover:text-gray-700">
+                            Edit
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-gray-600">No links added yet.</p>
+        {% endif %}
+    </div>
+
+<div class="flex flex-col items-center gap-3 mt-10">
+
+    <!-- View Minipage -->
+    <a href="{% url 'core:minipage' profile.user.username %}"
+       class="text-blue-600 font-medium hover:underline">
+        View your minipage →
+    </a>
+
+    <!-- Back to Dashboard -->
+    <a href="{% url 'core:home' %}"
+       class="text-gray-600 font-medium hover:underline">
+        ← Back to Dashboard
+    </a>
+
 </div>
-<div class="p-3 bg-stone-300">
-<h1 class="h1 m-3">Your links</h1>
-<ul>
-    {% for link in links %}
-        <li class="m-6"> <span class="text-xl" >{{ link.title }}:</span> <a href="{{ link.url }}" class="link-buttons font-normal">{{ link.url }}</a>
-            <a href="{% url 'profiles:edit_link' profile.id link.id %}" class="link-buttons">Edit</a>
-            <a href="{% url 'profiles:delete_link' profile.id link.id %}" class="link-buttons">Delete</a> </li>
-    {% endfor %}
-</ul>
-<p> <a href="{% url 'profiles:add_link' profile.id%}" class="link-buttons m-6 border-gray-300 border-solid"> Add link</a> </p>
+
 </div>
 {% endblock %}
