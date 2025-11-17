@@ -1,19 +1,46 @@
 {%extends "core/base.html"%}
-{%block content%}
-<form method="post" action="{%url 'core:login' %}">
+{% block content %}
 
-    {% csrf_token %}
-    {{ form.username.label_tag }}
-    {{ form.username }}
+<div class="max-w-md mx-auto mt-20 px-6">
+    <div class="bg-white p-8 rounded-2xl shadow">
 
-    <br>
+        <h1 class="text-3xl font-bold text-center mb-6">Log In</h1>
 
-    {{ form.password.label_tag }}
-    {{ form.password }}
+        <form method="post" action="{% url 'core:login' %}" class="space-y-5">
+            {% csrf_token %}
 
-    {{ form.errors }}
-    <button type="submit">Log in</button>
+            <!-- Username Field -->
+            <div>
+                <label class="block mb-1 text-gray-700 font-medium">
+                    {{ form.username.label }}
+                </label>
+                {{ form.username}}
+            </div>
 
-</form>
+            <!-- Password Field -->
+            <div>
+                <label class="block mb-1 text-gray-700 font-medium">
+                    {{ form.password.label }}
+                </label>
+                {{ form.password}}
+            </div>
+
+            <!-- Error Messages -->
+            {% if form.errors %}
+            <div class="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+                {{ form.errors }}
+            </div>
+            {% endif %}
+
+            <!-- Submit Button -->
+            <button type="submit"
+                    class="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition">
+                Log In
+            </button>
+
+        </form>
+
+    </div>
+</div>
 
 {% endblock %}

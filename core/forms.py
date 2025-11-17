@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
 
@@ -30,3 +30,12 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
 		self.fields['password2'].label = ''
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
+
+class StyledAuthenticationForm(AuthenticationForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		cls = "w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+		# Update widget attrs
+		self.fields['username'].widget.attrs.update({'class': cls, 'placeholder': 'Username'})
+		self.fields['password'].widget.attrs.update(
+			{'class': cls, 'placeholder': 'Password', 'autocomplete': 'current-password'})
