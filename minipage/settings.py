@@ -10,6 +10,8 @@ DEBUG = os.getenv("DEBUG") == "True"
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#set npm bin path for tailwind
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -17,8 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-q=_hc0e%qe2rav(jt-qgq_h7ze!bip&b9*f#0sm)e*ld$q+o)^'
 
-
-ALLOWED_HOSTS = ['mysite-cpq9.onrender.com']
+#Get ALLOWED_HOSTS from environment variable so it's different in production vs development
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 
 # Application definition
