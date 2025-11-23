@@ -49,8 +49,9 @@ def edit_profile(request, profile_id):
                           {"form": form, 'profile': profile})
 @login_required
 def add_link(request, profile_id):
-    form = LinkForm(request.POST or None)
+    profile = get_object_or_404(Profile, pk=profile_id, user=request.user)
     if request.method == 'POST':
+        form = LinkForm(request.POST)
         if form.is_valid():
             link = form.save(commit=False)
             link.profile = request.user.profile
@@ -58,11 +59,13 @@ def add_link(request, profile_id):
             messages.success(request, "Your link has been added!")
             return redirect('profiles:profile_detail', profile_id)
         else:
-            messages.warning(request, "Invalid link.")
-            return redirect('core:home')
+            messages.error(request, "Please fix the errors below.")
     else:
-        return render(request, 'profiles/add_link.html',
-                      {'form': form, 'profile_id': profile_id})
+        form = LinkForm()
+    return render(request, 'profiles/add_link.html', {
+        'form': form,
+        'profile': profile
+    })
 
 @login_required
 def edit_link(request, profile_id, link_id):
@@ -77,11 +80,14 @@ def edit_link(request, profile_id, link_id):
             messages.success(request, "Your link has been updated!")
             return redirect('profiles:profile_detail', profile_id=profile_id)
         else:
-            messages.warning(request, "Invalid link.")
-            return redirect('profiles:profile_detail', profile_id=profile_id)
+            messages.error(request, "Please fix the errors below.")
     else:
-        return render(request, 'profiles/edit_link.html',
-                      {'form': form, 'profile': profile, 'link': link})
+        form = LinkForm(instance=link)
+    return render(request, 'profiles/edit_link.html', {
+        'form': form,
+        'profile': profile,
+        'link': link
+    })
 
 @login_required
 def delete_link(request, profile_id, link_id):
