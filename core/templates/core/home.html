@@ -6,34 +6,34 @@
 <div class="max-w-3xl mx-auto px-6">
 
     <h1 class="h1 text-center mb-6">Dashboard</h1>
-    <p class="text-gray-600 text-center mb-10">Welcome back, {{ user.username|title }} 👋</p>
+    <p class="text-base-content/80 text-center mb-10">Welcome back, {{ user.username|title }} 👋</p>
 
     <div class="grid gap-6">
 
         <!-- Profile Card -->
-        <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <div class="bg-base-100 p-6 rounded-2xl shadow hover:shadow-lg transition">
             <h2 class="text-xl font-semibold mb-2">Your Profile</h2>
-            <p class="text-gray-600 mb-4">Update your personal details and bio.</p>
+            <p class="text-base-content/70 mb-4">Update your personal details and bio.</p>
             <a href="{% url 'profiles:profile_detail' profile_id %}"
-               class="text-blue-600 font-medium hover:underline">
+               class="text-primary font-medium hover:underline">
                 View profile →
             </a>
         </div>
 
         <!-- Minipage Card -->
-        <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <div class="bg-base-100 p-6 rounded-2xl shadow hover:shadow-lg transition">
             <h2 class="text-xl font-semibold mb-2">Your Minipage</h2>
-            <p class="text-gray-600 mb-4">Check and customize your public minipage.</p>
+            <p class="text-base-content/70 mb-4">Check and customize your public minipage.</p>
             <a href="{% url 'core:minipage' username %}"
-               class="text-blue-600 font-medium hover:underline">
+               class="text-primary font-medium hover:underline">
                 View minipage →
             </a>
         </div>
 
         <!-- Logout Card -->
-        <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition border border-red-100">
+        <div class="bg-base-100 p-6 rounded-2xl shadow hover:shadow-lg transition border border-error/30">
             <h2 class="text-xl font-semibold text-red-600 mb-2">Logout</h2>
-            <p class="text-gray-600 mb-4">End your session safely.</p>
+            <p class="text-base-content/70 mb-4">End your session safely.</p>
             <form action="{% url 'core:logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="text-red-600 font-medium hover:underline">
@@ -43,6 +43,9 @@
         </div>
 
     </div>
+
+<!-- Light/Dark Mode -->
+<input type="checkbox" value="dark" class="toggle theme-controller m-3" />
 </div>
 
 {% else %}
