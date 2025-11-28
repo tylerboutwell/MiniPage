@@ -741,6 +741,17 @@
   .border-gray-300 {
     border-color: var(--color-gray-300);
   }
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+  .border-primary-content\/50 {
+    border-color: var(--color-primary-content);
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-primary-content\/50 {
+      border-color: color-mix(in oklab, var(--color-primary-content) 50%, transparent);
+    }
+  }
   .border-red-200 {
     border-color: var(--color-red-200);
   }
