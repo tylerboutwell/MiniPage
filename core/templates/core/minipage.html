@@ -6,14 +6,16 @@
     <!-- Profile Header -->
     <div class="text-center mb-10">
         <!-- Avatar Placeholder -->
-        <div class="w-28 h-28 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center text-4xl font-semibold text-gray-500">
+    <div class="avatar mb-4">
+        <div class="w-28 rounded-full bg-base-300 text-base-content flex items-center justify-center text-4xl font-semibold">
             {{ profile.profile_name|first|upper }}
         </div>
+    </div>
 
-        <h1 class="text-3xl font-bold text-gray-900">{{ profile.profile_name }}</h1>
+        <h1 class="text-3xl font-bold">{{ profile.profile_name }}</h1>
 
         {% if profile.bio %}
-            <p class="text-gray-600 mt-2 px-4">{{ profile.bio }}</p>
+            <p class="mt-2 px-4">{{ profile.bio }}</p>
         {% endif %}
     </div>
 
@@ -22,11 +24,11 @@
         {% for link in links %}
         <a href="{{ link.url }}"
            target="_blank"
-           class="block text-center bg-white p-4 rounded-xl shadow hover:shadow-lg hover:-translate-y-0.5 transition font-medium text-gray-900">
+           class="block text-center bg-base-100 p-4 rounded-xl shadow hover:shadow-lg hover:-translate-y-0.5 transition font-medium">
             {{ link.title }}
         </a>
         {% empty %}
-        <p class="text-center text-gray-600">No links yet.</p>
+        <p class="text-center">No links yet.</p>
         {% endfor %}
     </div>
 
@@ -34,7 +36,7 @@
     {% if user.is_authenticated and user == profile.user %}
     <div class="text-center mt-8">
         <a href="{% url 'profiles:profile_detail' profile.id %}"
-           class="text-blue-600 hover:underline">
+           class="link link-hover link-primary">
             Edit your profile →
         </a>
     </div>

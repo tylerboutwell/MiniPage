@@ -445,6 +445,23 @@
       }
     }
   }
+  @layer daisyui.l1.l2.l3 {
+    .avatar {
+      position: relative;
+      display: inline-flex;
+      vertical-align: middle;
+    }
+    .avatar > div {
+      display: block;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+    .avatar img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
   .static {
     position: static;
   }
@@ -490,8 +507,14 @@
       max-width: 96rem;
     }
   }
+  .m-1 {
+    margin: calc(var(--spacing) * 1);
+  }
   .mx-auto {
     margin-inline: auto;
+  }
+  .my-1 {
+    margin-block: calc(var(--spacing) * 1);
   }
   @layer daisyui.l1.l2.l3 {
     .label {
@@ -746,6 +769,9 @@
   .bg-base-200 {
     background-color: var(--color-base-200);
   }
+  .bg-base-300 {
+    background-color: var(--color-base-300);
+  }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
   }
@@ -875,6 +901,21 @@
       color: var(--color-info-content);
       --alert-border-color: var(--color-info);
       --alert-color: var(--color-info);
+    }
+  }
+  @layer daisyui.l1.l2 {
+    .link-info {
+      color: var(--color-info);
+    }
+    @media (hover: hover) {
+      .link-info:hover {
+        color: var(--color-info);
+      }
+      @supports (color: color-mix(in lab, red, red)) {
+        .link-info:hover {
+          color: color-mix(in oklab, var(--color-info) 80%, #000);
+        }
+      }
     }
   }
   @layer daisyui.l1.l2 {
