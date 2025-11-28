@@ -17,7 +17,7 @@ class ProfileForm(forms.ModelForm):
 class LinkForm(forms.ModelForm):
     url = forms.CharField(
         widget=forms.TextInput(attrs={
-            'class': 'w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'class': 'w-full p-2 border rounded-lg',
             'placeholder': 'mywebsite.com'
         })
     )
@@ -25,7 +25,7 @@ class LinkForm(forms.ModelForm):
         model = Link
         exclude = ['user', 'profile']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'w-full rounded-lg border border-gray-300 p-2 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500',
+            'title': forms.TextInput(attrs={'class': 'w-full p-2 border rounded-lg',
                                             'placeholder': 'Your website'}),
 
         }
