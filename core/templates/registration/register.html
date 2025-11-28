@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-<div class="max-w-md mx-auto bg-white shadow-md p-6 rounded-lg">
+<div class="max-w-md mx-auto bg-base-100 shadow-md p-6 rounded-lg">
     <h1 class="text-2xl font-semibold mb-4">Create an Account</h1>
 
     <form method="POST">
@@ -16,17 +16,17 @@
                 {{ field }}
 
                 {% if field.help_text %}
-                    <p class="text-sm text-gray-500 mt-1">{{ field.help_text|safe }}</p>
+                    <p class="text-sm mt-1">{{ field.help_text|safe }}</p>
                 {% endif %}
 
                 {% for error in field.errors %}
-                    <p class="text-red-500 text-sm">{{ error }}</p>
+                    <p class="alert alert-error shadow-sm text-sm rounded-lg">{{ error }}</p>
                 {% endfor %}
             </div>
         {% endfor %}
 
         {% if form.non_field_errors %}
-            <div class="text-red-500 text-sm mb-4">
+            <div class="alert alert-error shadow-sm text-sm rounded-lg">
                 {{ form.non_field_errors }}
             </div>
         {% endif %}
