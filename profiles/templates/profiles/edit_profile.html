@@ -26,6 +26,14 @@
                 {% endfor %}
             </div>
 
+            <div id="theme-preview" data-theme="{{ user.profile.theme }}" class="p-6 rounded-xl border mt-4">
+                <h2 class="text-xl font-bold">Theme Preview</h2>
+                <p class="mt-2">This is what your minipage will look like using the selected theme.</p>
+
+                <button class="btn btn-primary mt-4">Primary Button</button>
+                <button class="btn btn-secondary mt-4">Secondary Button</button>
+            </div>
+
             <!-- Submit Button -->
             <button
                 type="submit"
@@ -37,5 +45,11 @@
         </form>
     </div>
 </div>
+
+<script>
+document.getElementById("theme-select").addEventListener("change", (e) => {
+    document.getElementById("theme-preview").setAttribute("data-theme", e.target.value);
+});
+</script>
 
 {% endblock %}

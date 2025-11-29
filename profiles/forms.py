@@ -11,6 +11,10 @@ class ProfileForm(forms.ModelForm):
             'profile_name': forms.TextInput(attrs={'class': 'p-2 w-full border rounded-lg'}),
             'bio': forms.Textarea(attrs={'class': 'w-full p-2 border rounded-lg',
                 'rows': 4}),
+            'theme': forms.Select(attrs={
+                'class': 'select select-bordered w-full',
+                'id': 'theme-select'  # Add this!
+            }),
 
         }
 
