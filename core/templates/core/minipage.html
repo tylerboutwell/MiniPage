@@ -33,7 +33,7 @@
         {% for link in links %}
         <a href="{{ link.url }}"
            target="_blank"
-           class="block text-center bg-base-100 p-4 rounded-xl shadow hover:shadow-lg hover:-translate-y-0.5 transition font-medium">
+           class="block text-center bg-primary p-4 rounded-xl shadow hover:shadow-lg hover:-translate-y-0.5 transition font-medium">
             {{ link.title }}
         </a>
         {% empty %}
@@ -45,7 +45,7 @@
     {% if user.is_authenticated and user == profile.user %}
     <div class="text-center mt-8">
         <a href="{% url 'profiles:profile_detail' profile.id %}"
-           class="link link-hover link-primary">
+           class="link link-hover">
             Edit your profile →
         </a>
     </div>
