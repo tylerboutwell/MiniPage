@@ -1,4 +1,11 @@
 {% extends 'core/base.html' %}
+{% block html_theme %}
+    data-theme="{{ profile.theme }}"
+{% endblock %}
+{% block theme_toggle %}
+    {# No toggle button on minipage #}
+{% endblock %}
+
 {% block content %}
 
 <div class="max-w-xl mx-auto px-6">
