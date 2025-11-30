@@ -11,11 +11,17 @@ class ProfileForm(forms.ModelForm):
             'profile_name': forms.TextInput(attrs={'class': 'p-2 w-full border rounded-lg'}),
             'bio': forms.Textarea(attrs={'class': 'w-full p-2 border rounded-lg',
                 'rows': 4}),
+            'avatar': forms.ClearableFileInput(attrs={
+                'class': 'file-input file-input-bordered w-full'
+            }),
             'theme': forms.Select(attrs={
                 'class': 'select select-bordered w-full',
-                'id': 'theme-select'  # Add this!
+                'id': 'theme-select'
             }),
 
+        }
+        help_texts = {
+            'avatar': 'Upload a profile image (optional).'
         }
 
 class LinkForm(forms.ModelForm):

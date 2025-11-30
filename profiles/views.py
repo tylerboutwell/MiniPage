@@ -38,15 +38,20 @@ def profile_detail(request, profile_id):
 @login_required
 def edit_profile(request, profile_id):
     profile = get_object_or_404(Profile, pk=profile_id)
-    if profile.user == request.user:
+    if profile.user != request.user:
+        messages.error(request, "You are not allowed to edit this profile.")
+        return redirect('profiles:profile_detail', profile_id=profile_id)
+
+    if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, "Your profile has been updated!")
             return redirect('profiles:profile_detail', profile_id=profile_id)
-        else:
-            return render(request, 'profiles/edit_profile.html',
-                          {"form": form, 'profile': profile})
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'profiles/edit_profile.html',
+                  {"form": form, 'profile': profile})
 @login_required
 def add_link(request, profile_id):
     profile = get_object_or_404(Profile, pk=profile_id, user=request.user)

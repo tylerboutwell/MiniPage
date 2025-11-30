@@ -11,18 +11,35 @@
         <form action="{% url 'profiles:edit_profile' profile.id %}" method="post" class="space-y-6" enctype="multipart/form-data">
             {% csrf_token %}
 
+
             <!-- Django Form Fields -->
+            <div class="mb-4">
+                {% if form.instance.avatar %}
+                    <div class="mb-2 flex justify-center">
+                        <img src="{{ form.instance.avatar.url }}" alt="Current avatar" class="w-24 h-24 rounded-full object-cover border" />
+                    </div>
+                {% endif %}
+                {{ form.avatar }}
+                {% if form.avatar.help_text %}
+                    <p class="text-sm text-gray-500">{{ form.avatar.help_text }}</p>
+                {% endif %}
+                {% if form.avatar.errors %}
+                    <p class="text-error text-sm mt-1">{{ form.avatar.errors|striptags }}</p>
+                {% endif %}
+            </div>
             <div class="space-y-4">
                 {% for field in form %}
-                    <div>
-                        <label class="block font-medium mb-1" for="{{ field.id_for_label }}">
-                            {{ field.label }}
-                        </label>
-                        {{ field }}
-                        {% if field.errors %}
-                            <p class="text-error text-sm mt-1">{{ field.errors|striptags }}</p>
-                        {% endif %}
-                    </div>
+                    {% if field.name != 'avatar' %}
+                        <div>
+                            <label class="block font-medium mb-1" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <p class="text-error text-sm mt-1">{{ field.errors|striptags }}</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
 
