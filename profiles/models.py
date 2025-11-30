@@ -9,14 +9,14 @@ class Profile(models.Model):
     max_length=50,
     default="light",
     choices=[
-        ("light", "Light"),
-        ("dark", "Dark"),
+        ("light", "Bright"),
+        ("dark", "Night"),
         ("cupcake", "Cupcake"),
-        ("forest", "Forest"),
+        ("forest", "Nature"),
         ("dracula", "Dracula"),
-        ("cyberpunk", "Cyberpunk"),
-        ("synthwave", "Synthwave"),
-        ("retro", "Retro"),
+        ("cyberpunk", "Retro Wave"),
+        ("synthwave", "Neon"),
+        ("retro", "Vintage"),
     ],
     )
 

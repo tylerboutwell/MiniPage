@@ -1313,12 +1313,6 @@
       --btn-fg: var(--color-primary-content);
     }
   }
-  @layer daisyui.l1.l2.l3 {
-    .btn-secondary {
-      --btn-color: var(--color-secondary);
-      --btn-fg: var(--color-secondary-content);
-    }
-  }
   @media (hover: hover) {
     .hover\:-translate-y-0\.5:hover {
       --tw-translate-y: calc(var(--spacing) * -0.5);
