@@ -14,12 +14,18 @@
 
     <!-- Profile Header -->
     <div class="text-center mb-10">
-        <!-- Avatar Placeholder -->
+
+    {% if profile.avatar %}
+    <div class="avatar mb-4">
+    <img src="{{ profile.avatar.url }}" alt="Current avatar" class="w-24 h-24 rounded-full object-cover border" />
+    </div>
+    {% else %}
     <div class="avatar mb-4">
         <div class="w-28 rounded-full bg-base-300 text-base-content flex items-center justify-center text-4xl font-semibold">
             {{ profile.profile_name|first|upper }}
         </div>
     </div>
+    {% endif %}
 
         <h1 class="text-3xl font-bold">{{ profile.profile_name }}</h1>
 
