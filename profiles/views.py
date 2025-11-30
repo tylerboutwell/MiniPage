@@ -39,7 +39,7 @@ def profile_detail(request, profile_id):
 def edit_profile(request, profile_id):
     profile = get_object_or_404(Profile, pk=profile_id)
     if profile.user == request.user:
-        form = ProfileForm(request.POST or None, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, "Your profile has been updated!")
