@@ -16,7 +16,10 @@
             <div class="mb-4">
                 {% if form.instance.avatar %}
                     <div class="mb-2 flex justify-center">
-                        <img src="{{ form.instance.avatar.url }}" alt="Current avatar" class="w-24 h-24 rounded-full object-cover border" />
+                        <img id="current-avatar-preview"
+                         src="{{ form.instance.avatar.url }}"
+                         alt="Current avatar"
+                         class="w-24 h-24 rounded-full object-cover border" />
                     </div>
                 {% endif %}
                 {{ form.avatar }}

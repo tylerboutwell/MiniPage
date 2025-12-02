@@ -40,7 +40,7 @@ def edit_profile(request, profile_id):
     profile = get_object_or_404(Profile, pk=profile_id)
     if profile.user != request.user:
         messages.error(request, "You are not allowed to edit this profile.")
-        return redirect('profiles:profile_detail', profile_id=profile_id)
+        return redirect('core:home')
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
