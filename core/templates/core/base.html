@@ -9,7 +9,7 @@
     {% tailwind_css %}
 </head>
 
-<body class="bg-base-200 text-base-content font-serif leading-normal tracking-normal min-h-screen">
+<body class="bg-base-200 text-base-content font-serif leading-normal tracking-normal min-h-screen" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 {% block theme_toggle %}
 <header class="flex justify-end p-4">
 <button data-toggle-theme="light,dark" data-act-class="ACTIVECLASS" class="btn btn-sm">
@@ -24,5 +24,7 @@
 {% block theme_script %}
 <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
 {% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+
 </body>
 </html>

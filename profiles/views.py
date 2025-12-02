@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from profiles.forms import ProfileForm, LinkForm
 from django.contrib import messages
@@ -101,7 +102,7 @@ def delete_link(request, profile_id, link_id):
     if link.profile == request.user.profile:
         link.delete()
         messages.success(request, "Your link has been deleted.")
-        return redirect('profiles:profile_detail', profile_id=profile_id)
+        return HttpResponse("")
     else:
         messages.warning(request, "You are not allowed to delete this link.")
         return redirect('profiles:profile_detail', profile_id=profile_id)
