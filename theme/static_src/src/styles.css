@@ -24,3 +24,8 @@
 .h1 {
   @apply text-2xl font-bold md:text-4xl;
 }
+
+tr.htmx-swapping td {
+  opacity: 0;
+  transition: opacity .5s ease-out;
+}
