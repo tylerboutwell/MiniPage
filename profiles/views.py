@@ -39,6 +39,7 @@ def profile_detail(request, profile_id):
 @login_required
 def edit_profile(request, profile_id):
     profile = get_object_or_404(Profile, pk=profile_id)
+
     if profile.user != request.user:
         messages.error(request, "You are not allowed to edit this profile.")
         return redirect('core:home')
