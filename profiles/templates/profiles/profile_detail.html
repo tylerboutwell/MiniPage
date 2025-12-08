@@ -6,7 +6,7 @@
     <div class="flex items-center gap-6 mb-10">
         {% if profile.avatar %}
         <div class="">
-        <img src="{{ profile.avatar.url }}" alt="Current avatar" class="w-24 h-24 rounded-full object-cover border" />
+        <img src="{{ profile.avatar.image.url }}" alt="Current avatar" class="w-24 h-24 rounded-full object-cover border" />
         </div>
         {% else %}
         <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-3xl font-semibold text-gray-500">

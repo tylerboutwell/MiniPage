@@ -42,3 +42,6 @@ class Avatar(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="avatar_set")
     image = models.ImageField(upload_to='avatars')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.image.name.split('/')[-1]

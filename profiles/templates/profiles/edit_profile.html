@@ -17,22 +17,24 @@
                 {% if form.instance.avatar %}
                     <div class="mb-2 flex justify-center">
                         <img id="current-avatar-preview"
-                         src="{{ form.instance.avatar.url }}"
+                         src="{{ form.instance.avatar.image.url }}"
                          alt="Current avatar"
                          class="w-24 h-24 rounded-full object-cover border" />
                     </div>
                 {% endif %}
+                <label class="block font-medium mb-1">Choose an existing avatar</label>
                 {{ form.avatar }}
-                {% if form.avatar.help_text %}
-                    <p class="text-sm text-base-content">{{ form.avatar.help_text }}</p>
-                {% endif %}
+
+                <label class="block font-medium mt-4 mb-1">Or upload a new avatar</label>
+                {{ form.new_avatar }}
+                <p class="text-sm text-base-content">{{ form.new_avatar.help_text }}</p>
                 {% if form.avatar.errors %}
                     <p class="text-error text-sm mt-1">{{ form.avatar.errors|striptags }}</p>
                 {% endif %}
             </div>
             <div class="space-y-4">
                 {% for field in form %}
-                    {% if field.name != 'avatar' %}
+                    {% if field.name != 'avatar' and field.name != 'new_avatar' %}
                         <div>
                             <label class="block font-medium mb-1" for="{{ field.id_for_label }}">
                                 {{ field.label }}
