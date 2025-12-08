@@ -31,10 +31,15 @@
                 {% if form.avatar.errors %}
                     <p class="text-error text-sm mt-1">{{ form.avatar.errors|striptags }}</p>
                 {% endif %}
-            </div>
+                <div class="mt-3 flex items-center gap-2">
+                {{ form.delete_avatar }}
+                <label class="font-medium">{{ form.delete_avatar.label }}</label>
+                </div>
+                </div>
+
             <div class="space-y-4">
                 {% for field in form %}
-                    {% if field.name != 'avatar' and field.name != 'new_avatar' %}
+                    {% if field.name != 'avatar' and field.name != 'new_avatar' and field.name != 'delete_avatar' %}
                         <div>
                             <label class="block font-medium mb-1" for="{{ field.id_for_label }}">
                                 {{ field.label }}
