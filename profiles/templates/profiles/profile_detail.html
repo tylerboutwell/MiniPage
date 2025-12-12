@@ -42,7 +42,7 @@
 
     {% if links %}
     <table class="table table-fixed">
-        <tbody hx-confirm="Delete this link?" hx-target="closest tr" hx-swap="outerHTML swap:.5s">
+        <tbody>
         {% for link in links %}
             <tr class="hover:bg-base-300 bg-base-100 p-2 mb-1 rounded-2xl transition">
                 <td class="font-semibold truncate">{{ link.title }}</td>
@@ -51,11 +51,15 @@
                             {{ link.url }}
                     </a></td>
                 <td class="flex justify-end">
-                    <a href="{% url 'profiles:edit_link' profile.id link.id %}"
-                       class="px-3 py-1 text-sm text-base-content hover:text-base-content/60 font-medium rounded-lg transition">
-                        Edit
-                    </a>
-                    <button class="px-3 py-1 text-sm text-error hover:text-error/60 font-medium rounded-lg transition" hx-delete="{% url 'profiles:delete_link' profile.id link.id %}">
+                    <button hx-get="{% url 'profiles:edit_link' profile.id link.id %}"
+                            hx-target="closest tr"
+                            hx-swap="outerHTML"
+                            class="px-3 py-1 text-sm text-base-content hover:text-base-content/60 font-medium rounded-lg transition">Edit</button>
+                    <button class="px-3 py-1 text-sm text-error hover:text-error/60 font-medium rounded-lg transition"
+                            hx-delete="{% url 'profiles:delete_link' profile.id link.id %}"
+                            hx-confirm="Delete this link?"
+                            hx-target="closest tr"
+                            hx-swap="outerHTML swap:.5s">
                       Delete
                     </button>
                 </td>

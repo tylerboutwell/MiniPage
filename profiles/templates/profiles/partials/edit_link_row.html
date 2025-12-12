@@ -1,0 +1,26 @@
+<tr>
+    <td colspan="3">
+        <form
+            hx-post="{% url 'profiles:edit_link' link.profile.id link.id %}"
+            hx-target="closest tr"
+            hx-swap="outerHTML"
+            class="flex items-center space-x-3"
+        >
+            {{ form.title }}
+            {{ form.url }}
+
+            <button class="px-3 py-1 text-sm btn btn-primary">
+                Save
+            </button>
+
+            <button
+                class="px-3 py-1 text-sm btn"
+                hx-get="{% url 'profiles:link_row' link.id %}"
+                hx-target="closest tr"
+                hx-swap="outerHTML"
+            >
+                Cancel
+            </button>
+        </form>
+    </td>
+</tr>

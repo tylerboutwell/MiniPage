@@ -85,16 +85,25 @@ def edit_link(request, profile_id, link_id):
             link.profile = request.user.profile
             form.save()
             messages.success(request, "Your link has been updated!")
-            return redirect('profiles:profile_detail', profile_id=profile_id)
+            return render(request, "profiles/partials/link_row.html", {"link": link})
         else:
-            messages.error(request, "Please fix the errors below.")
+            return render(request, "profiles/partials/edit_link_row.html", {
+                "form": form,
+                "link": link,
+                "profile": profile,
+            })
     else:
         form = LinkForm(instance=link)
-    return render(request, 'profiles/edit_link.html', {
+    return render(request, 'profiles/partials/edit_link_row.html', {
         'form': form,
         'profile': profile,
         'link': link
     })
+
+@login_required
+def link_row(request, link_id):
+    link = get_object_or_404(Link, id=link_id, profile=request.user.profile)
+    return render(request, "profiles/partials/link_row.html", {"link": link})
 
 @login_required
 def delete_link(request, profile_id, link_id):

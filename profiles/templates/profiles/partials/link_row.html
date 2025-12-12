@@ -1,0 +1,33 @@
+<tr class="hover:bg-base-300 bg-base-100 p-2 mb-1 rounded-2xl transition">
+    <td class="font-semibold truncate">{{ link.title }}</td>
+
+    <td class="truncate">
+        <a href="{{ link.url }}" class="link link-primary" target="_blank">
+            {{ link.url }}
+        </a>
+    </td>
+
+    <td class="flex justify-end space-x-2">
+
+        <!-- Inline Edit Button -->
+        <button
+            hx-get="{% url 'profiles:edit_link' link.profile.id link.id %}"
+            hx-target="closest tr"
+            hx-swap="outerHTML"
+            class="px-3 py-1 text-sm text-base-content hover:text-base-content/60 font-medium rounded-lg transition"
+        >
+            Edit
+        </button>
+
+        <!-- Delete Button -->
+        <button
+            hx-delete="{% url 'profiles:delete_link' link.profile.id link.id %}"
+            hx-confirm="Delete this link?"
+            hx-target="closest tr"
+            hx-swap="outerHTML swap:.5s"
+            class="px-3 py-1 text-sm text-error hover:text-error/60 font-medium rounded-lg transition"
+        >
+            Delete
+        </button>
+    </td>
+</tr>
