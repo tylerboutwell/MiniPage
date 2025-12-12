@@ -44,7 +44,7 @@
     <table class="table table-fixed">
         <tbody>
         {% for link in links %}
-            <tr class="hover:bg-base-300 bg-base-100 p-2 mb-1 rounded-2xl transition">
+            <tr class="hover:bg-base-300 bg-base-100 p-2 mb-1 rounded-2xl transition min-h-32">
                 <td class="font-semibold truncate">{{ link.title }}</td>
                 <td class="truncate">
                     <a href="{{ link.url }}" target="_blank" class="link link-primary link-hover">
@@ -54,8 +54,8 @@
                     <button hx-get="{% url 'profiles:edit_link' profile.id link.id %}"
                             hx-target="closest tr"
                             hx-swap="outerHTML"
-                            class="px-3 py-1 text-sm text-base-content hover:text-base-content/60 font-medium rounded-lg transition">Edit</button>
-                    <button class="px-3 py-1 text-sm text-error hover:text-error/60 font-medium rounded-lg transition"
+                            class="px-3 py-1 link link-primary link-hover">Edit</button>
+                    <button class="px-3 py-1 text-error hover:text-error/60 hover:underline"
                             hx-delete="{% url 'profiles:delete_link' profile.id link.id %}"
                             hx-confirm="Delete this link?"
                             hx-target="closest tr"

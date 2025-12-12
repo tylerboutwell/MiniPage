@@ -14,7 +14,7 @@
             hx-get="{% url 'profiles:edit_link' link.profile.id link.id %}"
             hx-target="closest tr"
             hx-swap="outerHTML"
-            class="px-3 py-1 text-sm text-base-content hover:text-base-content/60 font-medium rounded-lg transition"
+            class="px-3 py-1 link link-primary link-hover rounded-lg transition"
         >
             Edit
         </button>
@@ -25,7 +25,7 @@
             hx-confirm="Delete this link?"
             hx-target="closest tr"
             hx-swap="outerHTML swap:.5s"
-            class="px-3 py-1 text-sm text-error hover:text-error/60 font-medium rounded-lg transition"
+            class="px-3 py-1 text-error hover:text-error/60 hover:underline rounded-lg transition"
         >
             Delete
         </button>

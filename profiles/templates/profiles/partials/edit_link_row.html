@@ -1,4 +1,4 @@
-<tr>
+<tr class="bg-base-300 p-2 mb-1 rounded-2xl transition">
     <td colspan="3">
         {% if form.errors %}
         <div class="bg-error/10 border border-error text-error text-sm p-3 rounded-lg mb-4">
@@ -21,18 +21,20 @@
             {{ form.title }}
             {{ form.url }}
 
-            <button class="px-3 py-1 text-sm btn btn-primary">
+            <div class="flex justify-end">
+            <button class="px-3 py-1 link link-primary link-hover">
                 Save
             </button>
 
             <button
-                class="px-3 py-1 text-sm btn"
+                class="px-3 py-1 text-error hover:text-error/60 hover:underline"
                 hx-get="{% url 'profiles:link_row' link.id %}"
                 hx-target="closest tr"
                 hx-swap="outerHTML"
             >
                 Cancel
             </button>
+            </div>
         </form>
     </td>
 </tr>
