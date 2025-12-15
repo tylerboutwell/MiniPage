@@ -3,14 +3,12 @@
             class = "sortable"
             hx-post="{% url 'profiles:reorder_links' profile.id %}"
             hx-trigger="end"
-            hx-swap="none"
-        >
+            hx-swap="none">
             <div class="htmx-indicator">Updating order…</div>
             {% for link in links %}
                 {% include 'profiles/partials/link_row.html' %}
-
-        {% endfor %}
-    </form>
-        {% else %}
-            <p class="text-gray-600">No links added yet.</p>
-    {% endif %}
+            {% endfor %}
+        </form>
+            {% else %}
+                <p class="text-gray-600">No links added yet.</p>
+{% endif %}
