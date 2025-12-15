@@ -25,7 +25,7 @@
   @apply text-2xl font-bold md:text-4xl;
 }
 
-tr.htmx-swapping td {
+div.htmx-swapping span {
   opacity: 0;
   transition: opacity .5s ease-out;
 }

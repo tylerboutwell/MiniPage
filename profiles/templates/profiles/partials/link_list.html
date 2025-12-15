@@ -1,0 +1,36 @@
+{% if links %}
+        <form
+            class = "sortable"
+            hx-post="{% url 'profiles:reorder_links' profile.id %}"
+            hx-trigger="end"
+            hx-swap="none"
+        >
+            <div class="htmx-indicator">Updating order…</div>
+            {% for link in links %}
+                <div class="hover:bg-base-300 bg-base-100 p-4 flex items-center gap-4 rounded-2xl transition min-h-32">
+                    <input type="hidden" name="link_order" value="{{ link.pk }}" />
+                    <span class="cursor-pointer text-base-content/40 text-lg px-2" title="Drag to reorder">☰</span>
+                    <span class="flex-1 min-w-0">
+                        <p class="font-semibold truncate">
+                            {{ link.title }}
+                        </p>
+                    </span>
+                    <span hx-get="{% url 'profiles:edit_link' profile.id link.id %}"
+                                hx-target="closest div"
+                                hx-swap="outerHTML"
+                                class="px-3 py-1 link link-primary link-hover">Edit</span>
+                    <span class="px-3 py-1 text-error hover:text-error/60 hover:underline"
+                            style="cursor: pointer;"
+                            hx-delete="{% url 'profiles:delete_link' profile.id link.id %}"
+                            hx-target="closest div"
+                            hx-confirm="Are you sure you wish to delete?"
+                            hx-swap="outerHTML swap:.5s">
+                            Delete
+                    </span>
+                </div>
+
+        {% endfor %}
+    </form>
+        {% else %}
+            <p class="text-gray-600">No links added yet.</p>
+    {% endif %}

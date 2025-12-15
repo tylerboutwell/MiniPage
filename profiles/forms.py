@@ -83,7 +83,7 @@ class LinkForm(forms.ModelForm):
     )
     class Meta:
         model = Link
-        exclude = ['user', 'profile']
+        exclude = ['user', 'profile', 'position']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'w-full p-2 border rounded-lg',
                                             'placeholder': 'Your website'}),

@@ -25,6 +25,29 @@
 <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
 {% endblock %}
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script>
+htmx.onLoad(function(content) {
+    content.querySelectorAll(".sortable").forEach(function(sortableEl) {
+        let sortable = new Sortable(sortableEl, {
+            animation: 150,
+            ghostClass: "bg-base-300",
 
+            filter: ".htmx-indicator",
+            onMove: function (evt) {
+                return !evt.related.classList.contains("htmx-indicator");
+            },
+
+            onEnd: function () {
+                sortable.option("disabled", true);
+            }
+        });
+
+        sortableEl.addEventListener("htmx:afterSwap", function () {
+            sortable.option("disabled", false);
+        });
+    });
+});
+</script>
 </body>
 </html>

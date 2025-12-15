@@ -39,41 +39,9 @@
                 Add link +
             </a>
         </div>
-
-    {% if links %}
-    <table class="table table-fixed">
-        <tbody>
-        {% for link in links %}
-            <tr class="hover:bg-base-300 bg-base-100 p-2 mb-1 rounded-2xl transition min-h-32">
-                <td class="font-semibold truncate">{{ link.title }}</td>
-                <td class="truncate">
-                    <a href="{{ link.url }}" target="_blank" class="link link-primary link-hover">
-                            {{ link.url }}
-                    </a></td>
-                <td class="flex justify-end">
-                    <button hx-get="{% url 'profiles:edit_link' profile.id link.id %}"
-                            hx-target="closest tr"
-                            hx-swap="outerHTML"
-                            class="px-3 py-1 link link-primary link-hover">Edit</button>
-                    <button class="px-3 py-1 text-error hover:text-error/60 hover:underline"
-                            hx-delete="{% url 'profiles:delete_link' profile.id link.id %}"
-                            hx-confirm="Delete this link?"
-                            hx-target="closest tr"
-                            hx-swap="outerHTML swap:.5s">
-                      Delete
-                    </button>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-        {% else %}
-            <p class="text-gray-600">No links added yet.</p>
-    {% endif %}
-
-
-
+        {% include 'profiles/partials/link_list.html' %}
     </div>
+
 <div class="flex flex-col items-center gap-3 mt-10">
 
     <!-- View Minipage -->

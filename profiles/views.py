@@ -1,9 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_http_methods
+
+
 from profiles.forms import ProfileForm, LinkForm
 from django.contrib import messages
 from profiles.models import Profile, Link
+from profiles.utils import reorder, get_max_position
 
 
 def create_profile(request):
@@ -62,6 +66,7 @@ def add_link(request, profile_id):
         if form.is_valid():
             link = form.save(commit=False)
             link.profile = request.user.profile
+            link.position = get_max_position(profile)
             form.save()
             messages.success(request, "Your link has been added!")
             return redirect('profiles:profile_detail', profile_id)
@@ -105,14 +110,33 @@ def link_row(request, link_id):
     link = get_object_or_404(Link, id=link_id, profile=request.user.profile)
     return render(request, "profiles/partials/link_row.html", {"link": link})
 
+@require_http_methods(['DELETE'])
 @login_required
 def delete_link(request, profile_id, link_id):
     profile = get_object_or_404(Profile, pk=profile_id)
     link = get_object_or_404(Link, pk=link_id, profile=profile)
     if link.profile == request.user.profile:
         link.delete()
+        reorder(profile)
         messages.success(request, "Your link has been deleted.")
         return HttpResponse("")
     else:
         messages.warning(request, "You are not allowed to delete this link.")
         return redirect('profiles:profile_detail', profile_id=profile_id)
+
+@login_required
+@require_http_methods(['POST'])
+def reorder_links(request, profile_id):
+    profile = get_object_or_404(Profile, id=profile_id, user=request.user)
+
+    link_ids = request.POST.getlist("link_order")
+    links = []
+
+    for index, link_id in enumerate(link_ids, start=1):
+        link = Link.objects.get(pk=link_id)
+        link.position = index
+        link.save()
+        links.append(link)
+
+
+    return render(request, 'profiles/partials/link_list.html', {"profile": profile, "links": links})
