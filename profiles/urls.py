@@ -11,7 +11,7 @@ urlpatterns = [
     path('<int:profile_id>/links/add', views.add_link, name='add_link'),
     path('<int:profile_id>/links/<int:link_id>/edit', views.edit_link, name='edit_link'),
     path('<int:profile_id>/links/<int:link_id>/delete', views.delete_link, name='delete_link'),
-    path("links/<int:link_id>/row/", views.link_row, name="link_row"),
+    path("<int:profile_id>/links/<int:link_id>/row/", views.link_row, name="link_row"),
 path(
     "profile/<int:profile_id>/links/reorder/", views.reorder_links, name="reorder_links",
 ),

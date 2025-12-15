@@ -87,18 +87,16 @@ def edit_link(request, profile_id, link_id):
     if request.method == 'POST':
         if form.is_valid():
             link = form.save(commit=False)
-            link.profile = request.user.profile
+            link.profile = profile
             form.save()
             messages.success(request, "Your link has been updated!")
-            return render(request, "profiles/partials/link_row.html", {"link": link})
+            return render(request, "profiles/partials/link_row.html", {"link": link, "profile": profile, "form": form})
         else:
             return render(request, "profiles/partials/edit_link_row.html", {
                 "form": form,
                 "link": link,
                 "profile": profile,
             })
-    else:
-        form = LinkForm(instance=link)
     return render(request, 'profiles/partials/edit_link_row.html', {
         'form': form,
         'profile': profile,
@@ -106,9 +104,10 @@ def edit_link(request, profile_id, link_id):
     })
 
 @login_required
-def link_row(request, link_id):
+def link_row(request, profile_id, link_id):
+    profile = get_object_or_404(Profile, pk=profile_id)
     link = get_object_or_404(Link, id=link_id, profile=request.user.profile)
-    return render(request, "profiles/partials/link_row.html", {"link": link})
+    return render(request, "profiles/partials/link_row.html", {"link": link, "profile": profile})
 
 @require_http_methods(['DELETE'])
 @login_required

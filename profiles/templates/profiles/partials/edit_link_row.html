@@ -1,40 +1,47 @@
-<tr class="bg-base-300 p-2 mb-1 rounded-2xl transition">
-    <td colspan="3">
-        {% if form.errors %}
-        <div class="bg-error/10 border border-error text-error text-sm p-3 rounded-lg mb-4">
-            {% for field in form %}
-                {% for error in field.errors %}
-                    <p><strong>{{ field.label }}:</strong> {{ error }}</p>
-                {% endfor %}
+<div id="cont" class="bg-base-300 p-4 rounded-2xl transition min-h-32 mb-1">
+
+    {% if form.errors %}
+    <div class="bg-error/10 border border-error text-error text-sm p-3 rounded-lg mb-4">
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p><strong>{{ field.label }}:</strong> {{ error }}</p>
             {% endfor %}
-            {% for error in form.non_field_errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
-        <form
-            hx-post="{% url 'profiles:edit_link' link.profile.id link.id %}"
-            hx-target="closest tr"
-            hx-swap="outerHTML"
-            class="flex items-center space-x-3"
-        >
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form
+        hx-post="{% url 'profiles:edit_link' profile.id link.id %}"
+        hx-target="closest div"
+        hx-swap="outerHTML"
+        class="flex items-center gap-4 w-full"
+    >
+        {% csrf_token %}
+
+        <span class="text-base-content/20 text-lg px-2 select-none">☰</span>
+
+        <div class="flex-1 min-w-0 flex flex-col gap-2">
             {{ form.title }}
             {{ form.url }}
+        </div>
 
-            <div class="flex justify-end">
-            <button class="px-3 py-1 link link-primary link-hover">
+        <div class="flex flex-col sm:flex-row items-center gap-2">
+            <button class="px-3 py-1 link link-primary link-hover" type="submit">
                 Save
             </button>
 
             <button
                 class="px-3 py-1 text-error hover:text-error/60 hover:underline"
-                hx-get="{% url 'profiles:link_row' link.id %}"
-                hx-target="closest tr"
+                hx-get="{% url 'profiles:link_row' profile.id link.id %}"
+                hx-target="#cont"
                 hx-swap="outerHTML"
+                type="button"
             >
                 Cancel
             </button>
-            </div>
-        </form>
-    </td>
-</tr>
+        </div>
+    </form>
+</div>
