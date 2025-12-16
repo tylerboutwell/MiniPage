@@ -149,7 +149,7 @@ else:
     AWS_S3_REGION_NAME = os.getenv("AWS_REGION", "auto")
     AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT")
 
-    MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
+    MEDIA_URL = "https://pub-407fc3b2c61e455da322a05548395417.r2.dev/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
