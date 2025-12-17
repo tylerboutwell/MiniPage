@@ -149,6 +149,11 @@ else:
     AWS_S3_REGION_NAME = os.getenv("AWS_REGION", "auto")
     AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT")
 
+    AWS_S3_ADDRESSING_STYLE = "virtual"
+    AWS_S3_SIGNATURE_VERSION = "s3v4"
+    AWS_DEFAULT_ACL = None
+    AWS_QUERYSTRING_AUTH = False
+
     MEDIA_URL = os.getenv("MEDIA_URL")
 
 # Default primary key field type
