@@ -145,8 +145,4 @@ from django.core.files.storage import default_storage
 from django.http import HttpResponse
 
 def r2_test_upload(request):
-    path = default_storage.save(
-        "debug/test.txt",
-        ContentFile(b"Hello Cloudflare R2")
-    )
-    return HttpResponse(f"Saved at {path}")
+    return HttpResponse(f"Current storage backend: {default_storage.__class__}")
