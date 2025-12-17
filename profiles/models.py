@@ -36,9 +36,13 @@ class Link(models.Model):
 
     class Meta:
         ordering = ['position']
+
+def avatar_upload_path(instance, filename):
+    return f"avatars/{instance.profile_id}/{filename}"
+
 class Avatar(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="avatar_set")
-    image = models.ImageField()
+    image = models.ImageField(upload_to=avatar_upload_path)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
