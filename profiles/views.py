@@ -139,3 +139,14 @@ def reorder_links(request, profile_id):
 
 
     return render(request, 'profiles/partials/link_list.html', {"profile": profile, "links": links})
+
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+from django.http import HttpResponse
+
+def r2_test_upload(request):
+    path = default_storage.save(
+        "debug/test.txt",
+        ContentFile(b"Hello Cloudflare R2")
+    )
+    return HttpResponse(f"Saved at {path}")
