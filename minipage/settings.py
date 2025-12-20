@@ -155,8 +155,6 @@ else:
     AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
     AWS_S3_REGION_NAME = "auto"
 
-    MEDIA_URL = os.getenv("MEDIA_URL")
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
