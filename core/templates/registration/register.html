@@ -38,6 +38,16 @@
             Register
         </button>
     </form>
+
+    <p class="text-center text-sm text-base-content/70 mt-2">
+      Already have an account?
+      <a
+        href="{% url 'core:login' %}"
+        class="link link-primary font-medium ml-1"
+      >
+        Login
+      </a>
+    </p>
 </div>
 
 {% endblock %}
