@@ -139,10 +139,3 @@ def reorder_links(request, profile_id):
 
 
     return render(request, 'profiles/partials/link_list.html', {"profile": profile, "links": links})
-
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
-from django.http import HttpResponse
-
-def r2_test_upload(request):
-    return HttpResponse(f"Current storage backend: {default_storage.__class__}")
