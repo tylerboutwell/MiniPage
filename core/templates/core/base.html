@@ -11,11 +11,9 @@
 
 <body class="bg-base-200 text-base-content font-serif leading-normal tracking-normal min-h-screen" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 {% block theme_toggle %}
-<header class="flex justify-end p-4">
 {% include "core/partials/navbar.html" %}
-</header>
 {% endblock %}
-    <div class="container mx-auto px-6 py-10">
+    <div class="container mx-auto px-6 pt-20 py-10">
         {% block content %}
         {% endblock %}
     </div>
