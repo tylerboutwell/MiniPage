@@ -1,0 +1,25 @@
+<nav class="navbar fixed top-0 z-50 bg-base-100 border-b border-base-200 px-6">
+  <div class="max-w-6xl mx-auto w-full flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="{% url 'core:home' %}" class="text-xl font-bold">
+      Minipage
+    </a>
+
+    <!-- Links -->
+    <div class="flex items-center gap-6">
+      <a href="{% url 'profiles:profile_detail' %}" class="link link-hover">
+        Profile
+      </a>
+
+
+      <form method="post" action="{% url 'core:logout' %}">
+        {% csrf_token %}
+        <button class="btn btn-sm btn-ghost">
+          Log out
+        </button>
+      </form>
+    </div>
+
+  </div>
+</nav>

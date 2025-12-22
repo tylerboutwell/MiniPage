@@ -24,7 +24,7 @@
         <h2 class="text-xl font-semibold mb-2">Bio</h2>
         <p class="text-base-content">{{ profile.bio|default:"No bio added yet." }}</p>
 
-        <a href="{% url 'profiles:edit_profile' profile.id %}"
+        <a href="{% url 'profiles:edit_profile' %}"
            class="link link-primary link-hover">
             Edit profile
         </a>
@@ -34,7 +34,7 @@
     <div class="bg-base-100 p-6 rounded-2xl shadow mb-8">
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-xl font-semibold">Links</h2>
-            <a href="{% url 'profiles:add_link' profile.id %}"
+            <a href="{% url 'profiles:add_link' %}"
                class="link link-primary link-hover">
                 Add link +
             </a>

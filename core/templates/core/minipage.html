@@ -50,7 +50,7 @@
     <!-- Optional Back Button (only if user is owner) -->
     {% if user.is_authenticated and user == profile.user %}
     <div class="text-center mt-8">
-        <a href="{% url 'profiles:profile_detail' profile.id %}"
+        <a href="{% url 'profiles:profile_detail' %}"
            class="link link-hover">
             Edit your profile →
         </a>

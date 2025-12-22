@@ -14,7 +14,7 @@
     {% endif %}
 
     <form
-        hx-post="{% url 'profiles:edit_link' profile.id link.id %}"
+        hx-post="{% url 'profiles:edit_link' link.id %}"
         hx-target="closest div"
         hx-swap="outerHTML"
         class="flex items-center gap-4 w-full"
@@ -35,7 +35,7 @@
 
             <button
                 class="px-3 py-1 text-error hover:text-error/60 hover:underline"
-                hx-get="{% url 'profiles:link_row' profile.id link.id %}"
+                hx-get="{% url 'profiles:link_row' link.id %}"
                 hx-target="#cont"
                 hx-swap="outerHTML"
                 type="button"

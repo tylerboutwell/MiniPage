@@ -9,13 +9,13 @@
             {{ link.url }}
         </p>
     </span>
-    <span hx-get="{% url 'profiles:edit_link' profile.id link.id %}"
+    <span hx-get="{% url 'profiles:edit_link' link.id %}"
                 hx-target="closest div"
                 hx-swap="outerHTML"
                 class="px-3 py-1 link link-primary link-hover">Edit</span>
     <span class="px-3 py-1 text-error hover:text-error/60 hover:underline"
             style="cursor: pointer;"
-            hx-delete="{% url 'profiles:delete_link' profile.id link.id %}"
+            hx-delete="{% url 'profiles:delete_link' link.id %}"
             hx-target="closest div"
             hx-confirm="Are you sure you wish to delete?"
             hx-swap="outerHTML swap:.5s">

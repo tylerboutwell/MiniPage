@@ -12,6 +12,7 @@
 <body class="bg-base-200 text-base-content font-serif leading-normal tracking-normal min-h-screen" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 {% block theme_toggle %}
 <header class="flex justify-end p-4">
+{% include "core/partials/navbar.html" %}
 <button data-toggle-theme="light,dark" data-act-class="ACTIVECLASS" class="btn btn-sm">
     🌙 / ☀️
 </button>

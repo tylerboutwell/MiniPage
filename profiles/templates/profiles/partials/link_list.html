@@ -1,7 +1,7 @@
 {% if links %}
         <form
             class = "sortable"
-            hx-post="{% url 'profiles:reorder_links' profile.id %}"
+            hx-post="{% url 'profiles:reorder_links' %}"
             hx-trigger="end"
             hx-swap="none">
             <div class="htmx-indicator">Updating order…</div>

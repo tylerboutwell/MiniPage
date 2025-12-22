@@ -29,6 +29,7 @@
     --container-md: 28rem;
     --container-xl: 36rem;
     --container-3xl: 48rem;
+    --container-6xl: 72rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-lg: 1.125rem;
@@ -878,6 +879,23 @@
       opacity: 20%;
     }
   }
+  @layer daisyui.l1.l2.l3 {
+    .navbar {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      padding: 0.5rem;
+      min-height: 4rem;
+    }
+  }
+  @layer daisyui.l1.l2 {
+    :where(.navbar) {
+      position: relative;
+    }
+  }
+  .fixed {
+    position: fixed;
+  }
   .static {
     position: static;
   }
@@ -894,6 +912,9 @@
       bottom: auto;
       --toast-y: 0;
     }
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
   }
   @layer daisyui.l1.l2.l3 {
     .file-input {
@@ -1032,6 +1053,9 @@
         --btn-fg: color-mix(in oklch, var(--color-base-content) 20%, #0000);
       }
     }
+  }
+  .z-50 {
+    z-index: 50;
   }
   .container {
     width: 100%;
@@ -1192,6 +1216,9 @@
   .mb-10 {
     margin-bottom: calc(var(--spacing) * 10);
   }
+  .ml-1 {
+    margin-left: calc(var(--spacing) * 1);
+  }
   .alert {
     border-width: var(--border);
     border-color: var(--alert-border-color, var(--color-base-200));
@@ -1263,6 +1290,9 @@
   }
   .max-w-3xl {
     max-width: var(--container-3xl);
+  }
+  .max-w-6xl {
+    max-width: var(--container-6xl);
   }
   .max-w-md {
     max-width: var(--container-md);
@@ -1361,6 +1391,13 @@
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
+  }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  .border-base-200 {
+    border-color: var(--color-base-200);
   }
   .border-error {
     border-color: var(--color-error);
@@ -1617,6 +1654,28 @@
   .shadow-sm {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  @layer daisyui.l1 {
+    .btn-ghost:not(.btn-active, :hover, :active:focus, :focus-visible, input:checked:not(.filter .btn)) {
+      --btn-shadow: "";
+      --btn-bg: #0000;
+      --btn-border: #0000;
+      --btn-noise: none;
+    }
+    .btn-ghost:not(.btn-active, :hover, :active:focus, :focus-visible, input:checked:not(.filter .btn)):not(:disabled, [disabled], .btn-disabled) {
+      outline-color: currentcolor;
+      --btn-fg: var(--btn-color, currentColor);
+    }
+    @media (hover: none) {
+      .btn-ghost:not(.btn-active, :active, :focus-visible, input:checked:not(.filter .btn)):hover {
+        outline-color: currentcolor;
+        --btn-shadow: "";
+        --btn-bg: #0000;
+        --btn-fg: var(--btn-color, currentColor);
+        --btn-border: #0000;
+        --btn-noise: none;
+      }
+    }
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);

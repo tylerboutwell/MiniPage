@@ -30,8 +30,8 @@ def create_profile(request):
     return render(request, 'profiles/create_profile.html', {'form': form})
 
 @login_required
-def profile_detail(request, profile_id):
-    profile = get_object_or_404(Profile, pk=profile_id)
+def profile_detail(request):
+    profile = get_object_or_404(Profile, pk=request.user.profile.id)
     links = profile.links.all()
     if profile.user == request.user:
         return render(request, 'profiles/profile_detail.html',
@@ -41,8 +41,8 @@ def profile_detail(request, profile_id):
         return redirect('core:home')
 
 @login_required
-def edit_profile(request, profile_id):
-    profile = get_object_or_404(Profile, pk=profile_id)
+def edit_profile(request):
+    profile = get_object_or_404(Profile, pk=request.user.profile.id)
 
     if profile.user != request.user:
         messages.error(request, "You are not allowed to edit this profile.")
@@ -59,8 +59,8 @@ def edit_profile(request, profile_id):
     return render(request, 'profiles/edit_profile.html',
                   {"form": form, 'profile': profile})
 @login_required
-def add_link(request, profile_id):
-    profile = get_object_or_404(Profile, pk=profile_id, user=request.user)
+def add_link(request):
+    profile = get_object_or_404(Profile, pk=request.user.profile.id)
     if request.method == 'POST':
         form = LinkForm(request.POST)
         if form.is_valid():
@@ -80,8 +80,8 @@ def add_link(request, profile_id):
     })
 
 @login_required
-def edit_link(request, profile_id, link_id):
-    profile = get_object_or_404(Profile, pk=profile_id)
+def edit_link(request, link_id):
+    profile = get_object_or_404(Profile, pk=request.user.profile.id)
     link = get_object_or_404(Link, pk=link_id, profile=profile)
     form = LinkForm(request.POST or None, instance=link)
     if request.method == 'POST':
@@ -104,15 +104,15 @@ def edit_link(request, profile_id, link_id):
     })
 
 @login_required
-def link_row(request, profile_id, link_id):
-    profile = get_object_or_404(Profile, pk=profile_id)
+def link_row(request, link_id):
+    profile = get_object_or_404(Profile, pk=request.user.profile.id)
     link = get_object_or_404(Link, id=link_id, profile=request.user.profile)
     return render(request, "profiles/partials/link_row.html", {"link": link, "profile": profile})
 
 @require_http_methods(['DELETE'])
 @login_required
-def delete_link(request, profile_id, link_id):
-    profile = get_object_or_404(Profile, pk=profile_id)
+def delete_link(request, link_id):
+    profile = get_object_or_404(Profile, pk=request.user.profile.id)
     link = get_object_or_404(Link, pk=link_id, profile=profile)
     if link.profile == request.user.profile:
         link.delete()
@@ -125,8 +125,8 @@ def delete_link(request, profile_id, link_id):
 
 @login_required
 @require_http_methods(['POST'])
-def reorder_links(request, profile_id):
-    profile = get_object_or_404(Profile, id=profile_id, user=request.user)
+def reorder_links(request):
+    profile = get_object_or_404(Profile, pk=request.user.profile.id)
 
     link_ids = request.POST.getlist("link_order")
     links = []
