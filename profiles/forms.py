@@ -58,6 +58,12 @@ class ProfileForm(forms.ModelForm):
         profile = super().save(commit=False)
 
         new_avatar_file = self.cleaned_data.get("new_avatar")
+        delete_avatar = self.cleaned_data.get("delete_avatar")
+
+        if delete_avatar and profile.avatar:
+            avatar_to_delete = profile.avatar
+            profile.avatar = None
+            avatar_to_delete.delete()
 
         if new_avatar_file:
             avatar = Avatar.objects.create(
@@ -65,9 +71,6 @@ class ProfileForm(forms.ModelForm):
                 profile=profile,
             )
             profile.avatar = avatar
-
-        if self.cleaned_data.get("delete_avatar"):
-            profile.avatar = None
 
         if commit:
             profile.save()
