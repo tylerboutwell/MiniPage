@@ -33,20 +33,12 @@ def create_profile(request):
 def profile_detail(request):
     profile = get_object_or_404(Profile, pk=request.user.profile.id)
     links = profile.links.all()
-    if profile.user == request.user:
-        return render(request, 'profiles/profile_detail.html',
-                      {'profile': profile, 'links': links})
-    else:
-        messages.warning(request, "You are not allowed to see this page.")
-        return redirect('core:home')
+    return render(request, 'profiles/profile_detail.html',
+                  {'profile': profile, 'links': links})
 
 @login_required
 def edit_profile(request):
     profile = get_object_or_404(Profile, pk=request.user.profile.id)
-
-    if profile.user != request.user:
-        messages.error(request, "You are not allowed to edit this profile.")
-        return redirect('core:home')
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
