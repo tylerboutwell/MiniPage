@@ -31,7 +31,7 @@
   >
     <button
       hx-get="{% url 'profiles:edit_link' link.id %}"
-      hx-target=".group"
+      hx-target="closest .group"
       hx-swap="outerHTML"
       class="link link-primary link-hover"
     >

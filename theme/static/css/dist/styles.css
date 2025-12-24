@@ -1570,9 +1570,6 @@
   .p-8 {
     padding: calc(var(--spacing) * 8);
   }
-  .px-2 {
-    padding-inline: calc(var(--spacing) * 2);
-  }
   .px-3 {
     padding-inline: calc(var(--spacing) * 3);
   }
@@ -1702,14 +1699,6 @@
   }
   .text-base-content {
     color: var(--color-base-content);
-  }
-  .text-base-content\/20 {
-    color: var(--color-base-content);
-  }
-  @supports (color: color-mix(in lab, red, red)) {
-    .text-base-content\/20 {
-      color: color-mix(in oklab, var(--color-base-content) 20%, transparent);
-    }
   }
   .text-base-content\/40 {
     color: var(--color-base-content);
