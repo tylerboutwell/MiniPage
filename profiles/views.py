@@ -61,7 +61,7 @@ def add_link(request):
             link.position = get_max_position(profile)
             form.save()
             messages.success(request, "Your link has been added!")
-            return redirect('profiles:profile_detail', profile_id)
+            return redirect('profiles:profile_detail')
         else:
             messages.error(request, "Please fix the errors below.")
     else:
