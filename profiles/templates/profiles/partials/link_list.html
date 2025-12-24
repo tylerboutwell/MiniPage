@@ -4,7 +4,7 @@
             hx-post="{% url 'profiles:reorder_links' %}"
             hx-trigger="end"
             hx-swap="none">
-            <div class="htmx-indicator">Updating order…</div>
+            <div class="htmx-indicator">Updating links…</div>
             {% for link in links %}
                 {% include 'profiles/partials/link_row.html' %}
             {% endfor %}
