@@ -1,24 +1,47 @@
-<div class="hover:bg-base-300 bg-base-100 p-4 flex items-center gap-4 rounded-2xl transition min-h-32">
-    <input type="hidden" name="link_order" value="{{ link.pk }}" />
-    <span class="cursor-pointer text-base-content/40 text-lg px-2" title="Drag to reorder">☰</span>
-    <span class="flex-1 min-w-0">
-        <p class="font-semibold">
-            {{ link.title }}
-        </p>
-        <p class="link link-primary link-hover">
-            {{ link.url }}
-        </p>
+<div class="group hover:bg-base-300 bg-base-100 p-4 rounded-2xl transition">
+  <input type="hidden" name="link_order" value="{{ link.pk }}" />
+
+  <!-- Top row -->
+  <div class="flex items-start gap-3">
+    <!-- Drag handle -->
+    <span
+      class="cursor-grab text-base-content/40 text-lg pt-1"
+      title="Drag to reorder"
+    >
+      ☰
     </span>
-    <span hx-get="{% url 'profiles:edit_link' link.id %}"
-                hx-target="closest div"
-                hx-swap="outerHTML"
-                class="px-3 py-1 link link-primary link-hover">Edit</span>
-    <span class="px-3 py-1 text-error hover:text-error/60 hover:underline"
-            style="cursor: pointer;"
-            hx-delete="{% url 'profiles:delete_link' link.id %}"
-            hx-target="closest div"
-            hx-confirm="Are you sure you wish to delete?"
-            hx-swap="outerHTML swap:.5s">
-            Delete
-    </span>
+
+    <!-- Content -->
+    <div class="flex-1 min-w-0">
+      <p class="font-semibold leading-tight break-words">
+        {{ link.title }}
+      </p>
+
+      <p class="text-sm text-base-content/70 break-all">
+        {{ link.url }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="mt-3 flex justify-end gap-4 text-sm">
+    <button
+      hx-get="{% url 'profiles:edit_link' link.id %}"
+      hx-target=".group"
+      hx-swap="outerHTML"
+      class="link link-primary link-hover"
+    >
+      Edit
+    </button>
+
+    <button
+      hx-delete="{% url 'profiles:delete_link' link.id %}"
+      hx-target="closest div"
+      hx-confirm="Are you sure you wish to delete?"
+      hx-swap="outerHTML swap:.5s"
+      class="link text-error hover:text-error/70"
+    >
+      Delete
+    </button>
+  </div>
 </div>
