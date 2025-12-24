@@ -47,11 +47,29 @@
 </div>
 
 {% else %}
-<div class="text-center px-6">
-    <a href="{% url 'core:login' %}" class="text-blue-600 font-medium underline">Login</a>
-    or
-    <a href="{% url 'core:register' %}" class="text-blue-600 font-medium underline">Register</a>
-</div>
+<section class="hero min-h-[70vh] bg-base-200 px-6">
+  <div class="hero-content text-center max-w-2xl">
+    <div>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+        One Page. All Your Links.
+      </h1>
+
+      <p class="text-lg text-base-content/70 mb-8">
+        Minipage lets you create a single, beautiful page for your socials, portfolio, and projects.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="{% url 'core:register' %}" class="btn btn-primary btn-lg">
+          Create Your Minipage
+        </a>
+
+        <a href="{% url 'core:login' %}" class="btn btn-outline btn-lg">
+          Sign In
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endif %}
 
 {% endblock %}
