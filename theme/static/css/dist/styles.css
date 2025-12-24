@@ -1945,6 +1945,11 @@
     outline-style: none;
   }
   @media (width >= 40rem) {
+    .sm\:inline {
+      display: inline;
+    }
+  }
+  @media (width >= 40rem) {
     .sm\:flex-row {
       flex-direction: row;
     }
