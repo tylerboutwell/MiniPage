@@ -11,7 +11,11 @@
 
 <body class="bg-base-200 text-base-content font-serif leading-normal tracking-normal min-h-screen" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 {% block theme_toggle %}
-{% include "core/partials/navbar.html" %}
+{% if user.is_authenticated %}
+    {% include "core/partials/navbar.html" %}
+{% else %}
+    {% include "core/partials/navbar_guest.html" %}
+{% endif %}
 {% endblock %}
     <div class="container mx-auto px-6 pt-20 py-10">
         {% block content %}

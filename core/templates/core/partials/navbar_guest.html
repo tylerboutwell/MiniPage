@@ -1,0 +1,21 @@
+<nav class="navbar fixed top-0 z-50 bg-base-300/90 backdrop-blur border-b border-base-200">
+  <div class="navbar-start">
+    <a href="{% url 'core:home' %}" class="text-xl font-bold tracking-tight">
+      Minipage
+    </a>
+  </div>
+
+  <div class="navbar-end gap-2">
+
+    <!-- Theme toggle -->
+    {% include "core/partials/theme_toggle.html" %}
+
+    <a href="{% url 'core:login' %}" class="btn btn-sm btn-ghost">
+      Log in
+    </a>
+
+    <a href="{% url 'core:register' %}" class="btn btn-sm btn-primary">
+      Get started
+    </a>
+  </div>
+</nav>
