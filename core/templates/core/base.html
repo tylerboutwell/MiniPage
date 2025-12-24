@@ -23,6 +23,19 @@
     </div>
 {% block theme_script %}
 <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
+<script>
+    const toggle = document.getElementById("theme-toggle");
+    const savedTheme = localStorage.getItem("theme") || "light";
+
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    toggle.checked = savedTheme === "dark";
+
+    toggle.addEventListener("change", () => {
+    const theme = toggle.checked ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    });
+</script>
 {% endblock %}
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
@@ -49,17 +62,6 @@ htmx.onLoad(function(content) {
     });
 });
 
-  const toggle = document.getElementById("theme-toggle");
-  const savedTheme = localStorage.getItem("theme") || "light";
-
-  document.documentElement.setAttribute("data-theme", savedTheme);
-  toggle.checked = savedTheme === "dark";
-
-  toggle.addEventListener("change", () => {
-    const theme = toggle.checked ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  });
 </script>
 </body>
 </html>
